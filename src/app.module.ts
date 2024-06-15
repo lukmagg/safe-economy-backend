@@ -11,6 +11,7 @@ import { IncomesModule } from './incomes/incomes.module';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
+      playground: false,
     }),
     ConfigModule.forRoot({
       isGlobal: true,
