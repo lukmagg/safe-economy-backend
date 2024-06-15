@@ -57,7 +57,8 @@ export class ExpensesService {
     }
 
     //this.logger.log(sameDateExpenses.length);
+    const roundedNumber = aux.toFixed(1);
 
-    return aux;
+    return roundedNumber;
   }
 }
