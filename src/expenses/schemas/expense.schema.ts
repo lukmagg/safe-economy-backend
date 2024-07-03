@@ -12,9 +12,6 @@ export class Expense {
   @Prop({ required: true })
   amount: number;
 
-  @Prop({ required: true })
-  paymentType: string;
-
   @Prop()
   @IsOptional()
   paymentDate?: Date;

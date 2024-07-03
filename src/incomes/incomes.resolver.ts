@@ -37,7 +37,6 @@ export class IncomesResolver {
       amount: '39',
       paymentDate: date,
       description: 'some description',
-      paymentType: 'CASH',
     };
   }
 }

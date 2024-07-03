@@ -1,6 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { IsString, IsNumber, IsOptional } from 'class-validator';
-import { PaymentType } from 'src/constants';
 
 @InputType()
 export class CreateExpenseDto {
@@ -11,10 +10,6 @@ export class CreateExpenseDto {
   @Field()
   @IsNumber()
   readonly amount: number;
-
-  @Field()
-  @IsString()
-  readonly paymentType: PaymentType;
 
   @Field({ nullable: true })
   @IsOptional()
