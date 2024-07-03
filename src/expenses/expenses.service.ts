@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Expense } from './schemas/expense.schema';
 import { Model } from 'mongoose';
 import { CreateExpenseDto } from './dto/create-expense.dto';
+import { UpdateExpenseDto } from './dto/update-expense.dto';
 
 @Injectable()
 export class ExpensesService {
@@ -35,9 +36,7 @@ export class ExpensesService {
   }
 
   findOneById(id: string) {
-    return {
-      id,
-    };
+    return this.expenseModel.findById(id);
   }
 
   async totalSpent() {
@@ -59,5 +58,19 @@ export class ExpensesService {
     //this.logger.log(sameDateExpenses.length);
 
     return aux;
+  }
+
+  async update(updateExpenseDto: UpdateExpenseDto) {
+    const { id } = updateExpenseDto;
+
+    await this.expenseModel.findByIdAndUpdate(id, {
+      ...updateExpenseDto,
+    });
+
+    return this.findOneById(id);
+  }
+
+  async delete(id: string) {
+    await this.expenseModel.findByIdAndDelete(id);
   }
 }

@@ -2,6 +2,7 @@ import { Args, Query, Resolver, Mutation } from '@nestjs/graphql';
 import { ExpensesService } from './expenses.service';
 import { Expense } from './models/expenses.model';
 import { CreateExpenseDto } from './dto/create-expense.dto';
+import { UpdateExpenseDto } from './dto/update-expense.dto';
 
 @Resolver()
 export class ExpensesResolver {
@@ -30,5 +31,24 @@ export class ExpensesResolver {
     const createdExpense = await this.expensesService.create(createExpenseDto);
 
     return createdExpense;
+  }
+
+  @Mutation(() => Expense, { name: 'updateExpense' })
+  async updateExpense(
+    @Args('updateExpenseDto')
+    updateExpenseDto: UpdateExpenseDto,
+  ) {
+    const updated = await this.expensesService.update(updateExpenseDto);
+
+    return updated;
+  }
+
+  @Mutation(() => String)
+  async deleteExpense(
+    @Args('id')
+    id: string,
+  ) {
+    await this.expensesService.delete(id);
+    return id;
   }
 }
